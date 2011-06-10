@@ -1,0 +1,46 @@
+%h1 STEP 2. Listing Responses
+
+%table
+  %thead
+    %tr
+      %th Profile
+      %th Sent At
+      %th Received At
+      %th Via
+      %th View
+  %tbody
+    - @next_steps.each do |next_step|
+      %tr
+        %td
+          = next_step.profile_code
+        %td
+          = next_step.sent_at
+        %td
+          = next_step.created_at
+        %td
+          = next_step.request_via
+        %td
+          [
+          = link_to 'JSON', show_response_path(next_step)
+          ]
+
+To Get New Response Via:
+[
+= link_to 'HTTP POST', retrieve_response_url(@iform_xml_feed, :format => 'http')
+|
+= link_to 'REST', retrieve_response_url(@iform_xml_feed, :format => 'json')
+|
+= link_to 'XMLRPC', retrieve_response_url(@iform_xml_feed, :format => 'xml')
+]
+%br/
+
+To View Request: [
+= link_to 'XML', show_request_path(@iform_xml_feed, :format => 'xml')
+|
+= link_to 'JSON', show_request_path(@iform_xml_feed, :format => 'json')
+]
+
+%br/
+[
+= link_to 'back', iform_xml_feeds_path
+]
