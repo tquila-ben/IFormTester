@@ -28,12 +28,11 @@ class IformXmlFeedsController < ApplicationController
     records = data_hash['array'][0]['record']
     aaData = Array.new
     records.each{|record_data|
-       created_location = record_data['CREATED_LOCATION'].split(':').collect! {|n| n}
-       
+       created_location = record_data['CREATED_LOCATION'].split(':').collect! {|n| n}       
        record_row = Array.new
-       record_row << record_data['property_value_as_is']
-       record_row << record_data['type_of_loan_lien1']
        record_row << record_data['beginning_interest_rate']
+       record_row << record_data['original_term']
+       record_row << record_data['principal_and_interest_lien1']
        record_row << created_location[0]
        record_row << created_location[1]
        aaData << record_row
@@ -47,9 +46,7 @@ class IformXmlFeedsController < ApplicationController
     require 'json'
     require 'net/http'
   
-    base_url = "http://acpt.iformbuilder.com/p/chrisdemo/exzact/dataXML.php?PAGE_ID=7206&TABLE_NAME=_data10984_profile"
-    url = "#{base_url}&USERNAME=aleung&PASSWORD=iform2011"
-    resp = Net::HTTP.get_response(URI.parse(url))
+    resp = Net::HTTP.get_response(URI.parse($iformbuilder_uri))
     aaData = resp.body
     data_hash = Hash.from_xml("<array type='array'>#{aaData}</array>")
     records = data_hash['array'][0]['record']

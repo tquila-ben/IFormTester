@@ -38,15 +38,15 @@ class NextStepsController < ApplicationController
   def create_response(request_via, attr, next_step)
     case request_via
     when 'json'
-      resp_body = RestClient.post 'http://localhost:4567/create_report.json', {:data => attr}, {:content_type => :json, :accept => :html}
+      resp_body = RestClient.post $amortization_json_uri, {:data => attr}, {:content_type => :json, :accept => :html}
     when 'xml'
       attr = attr.reject {|key, value| value.nil?}
       attr = attr.each{|key, value| attr[key] = value.to_f if value.class == BigDecimal}
-      xmlrpc_client = XMLRPC::Client.new( "localhost", "/xmlrpc", 4567)
+      xmlrpc_client = XMLRPC::Client.new2( $amortization_xmlrpc_uri )
       resp = xmlrpc_client.call("create_report", attr)
       resp_body = resp.to_json
     else
-      resp = Net::HTTP.post_form(URI.parse('http://localhost:4567/create_report'), attr)
+      resp = Net::HTTP.post_form(URI.parse($amortization_http_post_uri), attr)
       resp_head = resp.to_hash
       resp_body = resp.body
     end
