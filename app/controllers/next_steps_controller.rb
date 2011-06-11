@@ -24,7 +24,7 @@ class NextStepsController < ApplicationController
       create_response(request_via, attr, next_step)
       next_step.save
     }
-    redirect_to iform_xml_feed_path
+    redirect_to show_next_steps_path
   end
   
   def show_response
@@ -52,6 +52,6 @@ class NextStepsController < ApplicationController
     end
     next_step.header = resp_head
     next_step.body = resp_body
-    next_step.profile_code = attr['report_id']
+    next_step.profile_code = attr['ID']
   end
 end
