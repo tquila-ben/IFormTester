@@ -17,7 +17,6 @@ class NextStepsController < ApplicationController
     request_via = params[:format] ||= 'http post'
     attrs = iform_xml_feed.get_request_attributes
     attrs.each{|attr|
-    puts "....attr['beginning_interest_rate']:#{attr['beginning_interest_rate']}"
       next_step = NextStep.new
       next_step.sent_at = Time.now
       next_step.request_via = request_via
@@ -38,8 +37,8 @@ class NextStepsController < ApplicationController
   
   def create_response(request_via, attr, next_step)
     case request_via
-    when 'json'
-      resp_body = RestClient.post $amortization_json_uri, {:data => attr}, {:content_type => :json, :accept => :html}
+    when 'rest'
+      resp_body = RestClient.post $amortization_rest_uri, attr, {:content_type => :json, :accept => :html}
     when 'xml'
       attr = attr.reject {|key, value| value.nil?}
       attr = attr.each{|key, value| attr[key] = value.to_f if value.class == BigDecimal}
