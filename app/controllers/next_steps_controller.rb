@@ -17,6 +17,7 @@ class NextStepsController < ApplicationController
     request_via = params[:format] ||= 'http post'
     attrs = iform_xml_feed.get_request_attributes
     attrs.each{|attr|
+    puts "....attr['beginning_interest_rate']:#{attr['beginning_interest_rate']}"
       next_step = NextStep.new
       next_step.sent_at = Time.now
       next_step.request_via = request_via
