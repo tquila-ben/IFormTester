@@ -1,19 +1,15 @@
 Iformtester::Application.routes.draw do
 
-  resources :iform_xml_feeds
+  resources :iform_xml_feeds, :only => [:index, :create, :show]
   
-  match "show_data_table/:id" => 'iform_xml_feeds#show_data_table'
+  resources :iform_xml_posts, :only => [:index, :create, :show]
   
-  match "retrieve_iform" => 'iform_xml_feeds#retrieve_iform', :as => :retrieve_iform
+  resources :iform_tests, :only => [:show] do
   
-  match "show_next_steps/:id" => 'iform_xml_feeds#show_next_steps', :as => :show_next_steps
-  
-  match "show_request/:id" => 'next_steps#show_request', :as => :show_request
-  
-  match "retrieve_response/:id" => 'next_steps#retrieve_response', :as => :retrieve_response
-  
-  match "show_response/:id" => 'next_steps#show_response', :as => :show_response
-  
+    resources :iform_test_responses, :only => [:index, :create, :show]
+    
+  end
+          
   root :to => "iform_xml_feeds#index"
   
   # The priority is based upon order of creation:

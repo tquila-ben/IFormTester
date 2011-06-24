@@ -1,0 +1,29 @@
+%h1 Listing IForm XML Posts
+
+%table
+  %thead
+    %tr
+      %th IForm Record ID
+      %th Received At
+      %th View
+      %th
+  %tbody
+    - @iform_xml_posts.each do |iform_xml_post|
+      %tr
+        %td
+          = iform_xml_post.header
+        %td
+          = iform_xml_post.created_at
+        %td 
+          [
+          = link_to 'XML', iform_xml_post_path(iform_xml_post, :format => 'xml')
+          |
+          = link_to 'JSON', iform_xml_post_path(iform_xml_post, :format => 'json')
+          ]
+        %td
+          [
+          = link_to 'STEP 2 - Test', iform_test_iform_test_responses_path(iform_xml_post.iform_test)
+          ]
+[
+= link_to 'View XML Feeds', iform_xml_feeds_path
+]

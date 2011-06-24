@@ -3,7 +3,7 @@
 %table
   %thead
     %tr
-      %th IForm Records
+      %th IForm Record ID
       %th Received At
       %th Record Count
       %th View
@@ -22,13 +22,13 @@
           = link_to 'XML', iform_xml_feed_path(iform_xml_feed, :format => 'xml')
           |
           = link_to 'JSON', iform_xml_feed_path(iform_xml_feed, :format => 'json')
-          |
-          = link_to 'DataTable', iform_xml_feed_path(iform_xml_feed, :format => 'html')
           ]
         %td
           [
-          = link_to 'STEP 2', show_next_steps_path(iform_xml_feed)
+          = link_to 'STEP 2 - Test', iform_test_iform_test_responses_path(iform_xml_feed.iform_test)
           ]
 [
-= link_to 'Retrieve from IFormBuilder', retrieve_iform_url
+= link_to 'Retrieve from IFormBuilder', iform_xml_feeds_url, :method => 'post'
+|
+= link_to 'View XML Posts', iform_xml_posts_path
 ]

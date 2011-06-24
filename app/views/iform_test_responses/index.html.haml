@@ -1,0 +1,48 @@
+%h1 STEP 2. Listing Test Responses
+
+%table
+  %thead
+    %tr
+      %th IForm Record ID
+      %th Sent At
+      %th Received At
+      %th Via
+      %th View Response
+  %tbody
+    - @iform_test_responses.each do |iform_test_response|
+      %tr
+        %td
+          = iform_test_response.header
+        %td
+          = iform_test_response.sent_at
+        %td
+          = iform_test_response.created_at
+        %td
+          = iform_test_response.request_via
+        %td
+          [
+          = link_to 'JSON', iform_test_iform_test_response_path(@iform_test, iform_test_response, :format => 'json')
+          ]
+
+To Test Via:
+[
+= link_to 'REST', iform_test_iform_test_responses_url(@iform_test, :format => 'rest'), :method => 'post'
+|
+= link_to 'XMLRPC', iform_test_iform_test_responses_url(@iform_test, :format => 'xml'), :method => 'post'
+]
+%br/
+
+To View Original Request: [
+= link_to 'XML', iform_test_path(@iform_test, :format => 'xml')
+|
+= link_to 'JSON', iform_test_path(@iform_test, :format => 'json')
+|
+= link_to 'DataTable', iform_test_path(@iform_test, :format => 'html')
+]
+
+%br/
+[
+= link_to 'View XML Feeds', iform_xml_feeds_path
+|
+= link_to 'View XML Posts', iform_xml_posts_path
+]
