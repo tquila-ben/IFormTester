@@ -6,9 +6,11 @@ Iformtester::Application.routes.draw do
   
   resources :iform_tests, :only => [:show] do
   
-    resources :iform_test_responses, :only => [:index, :create, :show]
+    resources :iform_test_responses, :only => [:index, :create, :show, :destroy]
     
   end
+  
+  match 'update_sent_to' => 'iform_test_responses#update_sent_to', :as => :update_sent_to
           
   root :to => "iform_xml_feeds#index"
   

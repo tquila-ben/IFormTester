@@ -6,7 +6,7 @@ class CreateIformTestResponses < ActiveRecord::Migration
       t.text :body
       t.string :request_via
       t.datetime :sent_at
-      t.string :profile_code
+      t.string :sent_to
 
       t.timestamps
     end

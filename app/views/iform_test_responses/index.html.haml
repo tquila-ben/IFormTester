@@ -4,15 +4,19 @@
   %thead
     %tr
       %th IForm Record ID
+      %th Sent To
       %th Sent At
       %th Received At
       %th Via
       %th View Response
+      %th
   %tbody
     - @iform_test_responses.each do |iform_test_response|
       %tr
         %td
           = iform_test_response.header
+        %td
+          = iform_test_response.sent_to
         %td
           = iform_test_response.sent_at
         %td
@@ -23,26 +27,40 @@
           [
           = link_to 'JSON', iform_test_iform_test_response_path(@iform_test, iform_test_response, :format => 'json')
           ]
-
-To Test Via:
-[
-= link_to 'REST', iform_test_iform_test_responses_url(@iform_test, :format => 'rest'), :method => 'post'
-|
-= link_to 'XMLRPC', iform_test_iform_test_responses_url(@iform_test, :format => 'xml'), :method => 'post'
-]
-%br/
-
-To View Original Request: [
-= link_to 'XML', iform_test_path(@iform_test, :format => 'xml')
-|
-= link_to 'JSON', iform_test_path(@iform_test, :format => 'json')
-|
-= link_to 'DataTable', iform_test_path(@iform_test, :format => 'html')
-]
-
-%br/
-[
-= link_to 'View XML Feeds', iform_xml_feeds_path
-|
-= link_to 'View XML Posts', iform_xml_posts_path
-]
+        %td
+          [
+          = link_to 'delete', iform_test_iform_test_response_path(@iform_test, iform_test_response), :method => :delete
+          ]
+= form_tag ({:action => :update_sent_to}, {:class => 'bp'}) do
+  %fieldset
+    %legend
+      Send Test
+    %label Send Test Via:
+    [
+    = link_to 'REST', iform_test_iform_test_responses_url(@iform_test, :format => 'rest'), :method => 'post'
+    |
+    = link_to 'XMLRPC', iform_test_iform_test_responses_url(@iform_test, :format => 'xml'), :method => 'post'
+    ]
+    %br/
+    %label Send Test To:
+    = text_field_tag :sent_to, session[:sent_to]
+    = submit_tag 'Change URL'
+%form.bp
+  %fieldset
+    %legend
+      Original Request
+    %label View: 
+    [
+    = link_to 'XML', iform_test_path(@iform_test, :format => 'xml')
+    |
+    = link_to 'JSON', iform_test_path(@iform_test, :format => 'json')
+    |
+    = link_to 'DataTable', iform_test_path(@iform_test, :format => 'html')
+    ]
+%p
+  Go Back:
+  [
+  = link_to 'View XML Feeds', iform_xml_feeds_path
+  |
+  = link_to 'View XML Posts', iform_xml_posts_path
+  ]
