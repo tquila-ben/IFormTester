@@ -10,6 +10,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110610003906) do
+ActiveRecord::Schema.define(:version => 20110626100924) do
+
+  create_table "iform_test_responses", :force => true do |t|
+    t.integer  "iform_test_id"
+    t.text     "header"
+    t.text     "body"
+    t.string   "request_via"
+    t.datetime "sent_at"
+    t.string   "sent_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "iform_tests", :force => true do |t|
+    t.integer  "iform_xml_feed_id"
+    t.integer  "iform_xml_post_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "iform_xml_feeds", :force => true do |t|
+    t.text     "body"
+    t.text     "header"
+    t.integer  "record_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "iform_xml_posts", :force => true do |t|
+    t.text     "body"
+    t.text     "header"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
