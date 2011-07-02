@@ -14,7 +14,7 @@
       %th Via
       %th
         %span{:title => 'To browse the response from test destination in raw format'} View Response
-      %th
+      %th Delete
   %tbody
     - @iform_test_responses.each do |iform_test_response|
       %tr
@@ -33,36 +33,32 @@
           = link_to 'JSON', iform_test_iform_test_response_path(@iform_test, iform_test_response, :format => 'json')
           ]
         %td
-          [
-          = link_to 'delete', iform_test_iform_test_response_path(@iform_test, iform_test_response), :method => :delete
-          ]
-= form_tag ({:action => :update_sent_to}, {:class => 'bp'}) do
-  %fieldset
-    %legend
-      Send Test
-    %label Send Test Via:
-    [
-    = link_to 'REST', iform_test_iform_test_responses_url(@iform_test, :format => 'rest'), {:method => 'post', :title => 'Send to the test destination via REST. Record will be sent in the format of JSON'}
-    |
-    = link_to 'XMLRPC', iform_test_iform_test_responses_url(@iform_test, :format => 'xml'), {:method => 'post', :title => 'Send to the test destination via XMLRPC. Record will be sent in the format of XML'}
-    ]
-    %br/
+          = form_tag(iform_test_iform_test_response_path(@iform_test, iform_test_response), {:method => :delete}) do
+            = image_submit_tag('bullet_delete.png')
+#content
+  %strong Send Test Via:
+  = button_to 'REST', iform_test_iform_test_responses_url(@iform_test, :format => 'rest'), {:title => 'Send to the test destination via REST. Record will be sent in the format of JSON', :class => 'blue awesome'}
+  |
+  = button_to 'XMLRPC', iform_test_iform_test_responses_url(@iform_test, :format => 'xml'), {:title => 'Send to the test destination via XMLRPC. Record will be sent in the format of XML', :class => 'blue awesome'}
+  %br/
+  = form_tag({:action => :update_sent_to}, {:class => 'bp'}) do
     %label
       %span{:title => 'Use this to change the test destination'} Send Test To:
     = text_field_tag :sent_to, session[:sent_to]
     = submit_tag 'Change URI'
-%form.bp
-  %fieldset
-    %legend
-      %span{:title => 'To see what is being sent out to the test'} View Request
-    [
-    = link_to 'XML', iform_test_path(@iform_test, :format => 'xml'), {:title => 'To see the records in raw XML format'}
-    |
-    = link_to 'JSON', iform_test_path(@iform_test, :format => 'json'), {:title => 'To see the records in raw JSON format'}
-    |
-    = link_to 'DataTable', iform_test_path(@iform_test, :format => 'html'), {:title => 'To see the records in pretty HTML table'}
-    ]
-%p
+    %hr.space
+%form.bp#sidebar
+  %label
+    %span{:title => 'To see what is being sent out to the test'} View Request
+  [
+  = link_to 'XML', iform_test_path(@iform_test, :format => 'xml'), {:title => 'To see the records in raw XML format'}
+  |
+  = link_to 'JSON', iform_test_path(@iform_test, :format => 'json'), {:title => 'To see the records in raw JSON format'}
+  |
+  = link_to 'DataTable', iform_test_path(@iform_test, :format => 'html'), {:title => 'To see the records in pretty HTML table'}
+  ]
+  %hr.space
+%p#footer
   Go Back:
   [
   = link_to 'View XML Feeds', iform_xml_feeds_path, {:title => 'To browse the list of received IForm XML Feeds'}

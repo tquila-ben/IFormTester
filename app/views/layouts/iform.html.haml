@@ -1,11 +1,8 @@
 - content_for :stylesheets do
   = stylesheet_link_tag 'iform'
-  = stylesheet_link_tag 'blueprint/plugins/link-icons/screen.css'
 - content_for :javascripts do
   :javascript
-    $(function(){
-    
-        $('span, a').hoverbox();
-    
+    $(function(){    
+        $('span, a, input').hoverbox();    
     });
 = render :template => 'layouts/application'

@@ -31,8 +31,9 @@
           [
           = link_to 'Test', iform_test_iform_test_responses_path(iform_xml_feed.iform_test)
           ]
-[
-= link_to 'Retrieve from IFormBuilder', iform_xml_feeds_url, {:title => 'Get some more from IFormBuilder feeds', :method => 'post' }
-|
-= link_to 'View XML Posts', iform_xml_posts_path, {:title => 'To browse the list of received IForm Post XML' }
-]
+#footer
+  = button_to 'Retrieve from IFormBuilder', iform_xml_feeds_url, {:title => 'Get some more from IFormBuilder feeds', :class => 'blue awesome'}
+  |
+  [
+  = link_to 'View XML Posts', iform_xml_posts_path, {:title => 'To browse the list of received IForm Post XML'}
+  ]
