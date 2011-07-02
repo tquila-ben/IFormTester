@@ -6,7 +6,8 @@
     /[if lt IE 8]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
     = yield :stylesheets
-    = javascript_include_tag :defaults
+    = javascript_include_tag :all
+    = yield :javascripts
     = csrf_meta_tag
   %body.bp
     .container

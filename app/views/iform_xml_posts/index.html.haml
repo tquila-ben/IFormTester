@@ -3,10 +3,13 @@
 %table
   %thead
     %tr
-      %th IForm Record ID
+      %th 
+        %span{:title => 'Each IForm XML Feed member record has a unique ID'} IForm Record ID
       %th Received At
-      %th View
       %th
+        %span{:title => 'To browse the received records in raw format. This helps to see what is coming through over the wire.'} View
+      %th
+        %span{:title => 'To send the received records to a test destination'} Step 2
   %tbody
     - @iform_xml_posts.each do |iform_xml_post|
       %tr
@@ -22,8 +25,8 @@
           ]
         %td
           [
-          = link_to 'STEP 2 - Test', iform_test_iform_test_responses_path(iform_xml_post.iform_test)
+          = link_to 'Test', iform_test_iform_test_responses_path(iform_xml_post.iform_test)
           ]
 [
-= link_to 'View XML Feeds', iform_xml_feeds_path
+= link_to 'View XML Feeds', iform_xml_feeds_path, {:title => 'To browse the list of received IForm XML Feeds'}
 ]

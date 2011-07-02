@@ -7,14 +7,23 @@
 		<style type="text/css" title="currentStyle">
 			@import "/release-datatables/media/css/demo_page.css";
 			@import "/release-datatables/media/css/demo_table.css";
+			@import "/release-datatables/extras/TableTools-2.0.1/media/css/TableTools.css";
+			@import "/release-datatables/extras/ColVis/media/css/ColVis.css";
 		</style>
 		<script type="text/javascript" language="javascript" src="/release-datatables/media/js/jquery.js"></script>
 		<script type="text/javascript" language="javascript" src="/release-datatables/media/js/jquery.dataTables.js"></script>
+		<script type="text/javascript" src="/release-datatables/extras/TableTools-2.0.1/media/js/TableTools.min.js"></script>
+		<script type="text/javascript" src="/release-datatables/extras/ColVis/media/js/ColVis.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
 				$('#example').dataTable( {
 					"bProcessing": true,
-					"sAjaxSource": '/iform_tests/<%= @iform_test.id %>.json'
+					"sAjaxSource": '/iform_tests/<%= @iform_test.id %>.json',
+					"sDom": 'CT<"clear">lfrtip',
+					"sPaginationType": "full_numbers",
+					"oTableTools": {
+					  "sSwfPath": "/release-datatables/extras/TableTools-2.0.1/media/swf/copy_cvs_xls_pdf.swf"
+					}
 				} );
 			} );
 		</script>
