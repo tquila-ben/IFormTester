@@ -3,6 +3,7 @@ class IformXmlFeedsController < ApplicationController
   
   def update_feed_from
     session[:feed_from] = params[:feed_from]
+    flash[:notice] = 'Feed URI updated successfully.'
     redirect_to :back
   end
   

@@ -4,6 +4,12 @@ class IformXmlPostsController < ApplicationController
   
   skip_before_filter :verify_authenticity_token, :only => :create
   
+  def update_postxml_key
+    session[:postxml_key] = params[:postxml_key]
+    flash[:notice] = 'PostXML key updated successfully'
+    redirect_to :back
+  end
+  
   def index
     @iform_xml_posts = IformXmlPost.all
 

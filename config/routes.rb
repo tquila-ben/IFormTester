@@ -12,6 +12,8 @@ Iformtester::Application.routes.draw do
   
   match 'update_feed_from' => 'iform_xml_feeds#update_feed_from', :as => :update_feed_from
   
+  match 'update_postxml_key' => 'iform_xml_posts#update_postxml_key', :as => :update_postxml_key
+  
   match 'update_sent_to' => 'iform_test_responses#update_sent_to', :as => :update_sent_to
           
   root :to => "iform_xml_feeds#index"

@@ -1,6 +1,8 @@
+%br/
+
 %h1 STEP 2. Listing Test Responses
 
-%h2 To test, specify a Test URI in the 'Send Test To:', then click on one of the 'Send Test Via' buttons.
+%h4 To test, specify a Test URI in the 'Send Test To:', then click on one of the 'Send Test Via' buttons.
 
 %table
   %thead
@@ -48,22 +50,13 @@
       %span{:title => 'Use this to change the test destination'} Send Test To:
     = text_field_tag :sent_to, session[:sent_to]
     = submit_tag 'Change URI'
-    %hr.space
-%form.bp#sidebar
-  %label
-    %span{:title => 'To see what is being sent out to the test'} View Request
+#sidebar
+  %span{:title => 'To see what is being sent out to the test'}
+    %strong View Request
   [
   = link_to 'XML', iform_test_path(@iform_test, :format => 'xml'), {:title => 'To see the records in raw XML format'}
   |
   = link_to 'JSON', iform_test_path(@iform_test, :format => 'json'), {:title => 'To see the records in raw JSON format'}
   |
   = link_to 'DataTable', iform_test_path(@iform_test, :format => 'html'), {:title => 'To see the records in pretty HTML table'}
-  ]
-  %hr.space
-%p#footer
-  Go Back:
-  [
-  = link_to 'View XML Feeds', iform_xml_feeds_path, {:title => 'To browse the list of received IForm XML Feeds'}
-  |
-  = link_to 'View XML Posts', iform_xml_posts_path, {:title => 'To browse the list of received IForm Post XML'}
   ]

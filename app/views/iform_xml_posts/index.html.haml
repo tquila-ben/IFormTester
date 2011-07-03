@@ -1,8 +1,6 @@
-%h1 Listing IForm XML Posts
-
-.quiet Here is a list of all IFormBuilder have posted to us.
-
 %br/
+
+%h4 Here is a list of all IFormBuilder have posted to us.
 
 %table
   %thead
@@ -29,8 +27,15 @@
           ]
         %td
           [
-          = link_to 'Test', iform_test_iform_test_responses_path(iform_xml_post.iform_test)
+          = link_to 'Test', iform_test_iform_test_responses_path(iform_xml_post.iform_test, {:tab_selected => 'iform_xml_post'})
           ]
-Switch Mode: [
-= link_to 'View XML Feeds', iform_xml_feeds_path, {:title => 'To browse the list of received IForm XML Feeds'}
-]
+    %tr
+      %td
+  %tfoot
+    %tr
+      %td
+        = form_tag({:action => :update_postxml_key}, {:class => 'bp'}) do
+          %label
+            %span{:title => 'Use this to change the key in PostXML'} Expecting Key:
+          = text_field_tag :postxml_key, session[:postxml_key]
+          = submit_tag 'Change Key'

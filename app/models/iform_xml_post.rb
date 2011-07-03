@@ -8,7 +8,8 @@ class IformXmlPost < ActiveRecord::Base
   
   def data_records
     body_hash = ActiveSupport::JSON.decode(body)
-    data_hash = Hash.from_xml("<array type='array'>#{body_hash['key']}</array>")
+    postxml_key = session[:postxml_key] || $postxml_key
+    data_hash = Hash.from_xml("<array type='array'>#{body_hash[postxml_key]}</array>")
     return [data_hash['array'][0]['record']['record']].to_json
   end
 end

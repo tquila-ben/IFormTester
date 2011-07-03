@@ -7,3 +7,4 @@ Iformtester::Application.initialize!
 $iformbuilder_uri = 'TO BE SPECIFIED'
 $amortization_rest_uri = 'TO BE SPECIFIED'
 $amortization_xmlrpc_uri = 'TO BE SPECIFIED'
+$postxml_key = 'key'
