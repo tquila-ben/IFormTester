@@ -1,6 +1,11 @@
 class IformXmlFeedsController < ApplicationController
   layout 'iform'
   
+  def update_feed_from
+    session[:feed_from] = params[:feed_from]
+    redirect_to :back
+  end
+  
   def index
     @iform_xml_feeds = IformXmlFeed.all
 
@@ -14,11 +19,17 @@ class IformXmlFeedsController < ApplicationController
     require 'json'
     require 'net/http'
   
-    resp = Net::HTTP.get_response(URI.parse($iformbuilder_uri))
-    iform_xml_feed = IformXmlFeed.new
-    iform_xml_feed.body = resp.body
-    iform_xml_feed.save    
-    
+    uri = session[:feed_from] || $iformbuilder_uri
+    begin
+      resp = Net::HTTP.get_response(URI.parse(uri))
+      iform_xml_feed = IformXmlFeed.new
+      iform_xml_feed.body = resp.body
+      if iform_xml_feed.save
+        flash[:notice] = 'XML Feed retrieved successfully.'
+      end
+    rescue Exception => e
+      flash[:error] = e.message
+    end
     redirect_to :iform_xml_feeds
   end
 

@@ -10,6 +10,12 @@
     = yield :javascripts
     = csrf_meta_tag
   %body.bp.two-col
+    - if flash[:notice]
+      %p.success
+        = flash[:notice]
+    - if flash[:error]
+      %p.error
+        = flash[:error]
     .container
       = yield
     

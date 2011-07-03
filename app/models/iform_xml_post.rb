@@ -8,9 +8,7 @@ class IformXmlPost < ActiveRecord::Base
   
   def data_records
     body_hash = ActiveSupport::JSON.decode(body)
-    puts "......body_hash[:key]:#{body_hash['key'].inspect}"
     data_hash = Hash.from_xml("<array type='array'>#{body_hash['key']}</array>")
-    puts "......data_hash:#{data_hash.inspect}"
     return [data_hash['array'][0]['record']['record']].to_json
   end
 end

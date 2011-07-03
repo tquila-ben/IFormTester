@@ -40,8 +40,6 @@ class IformXmlPostsController < ApplicationController
  
    # Parse xml
    method, arguments = XMLRPC::Marshal.load_call(xml)
-   puts "....method:#{method}"
-   puts "....arguments:#{arguments.inspect}"
    arg = arguments[0]
    response = create_report(arg)
     
@@ -49,7 +47,6 @@ class IformXmlPostsController < ApplicationController
   end
   
   def create_report(args)
-    puts "...args:#{args.inspect}"
     handler = PricingXmlrpcHandler.new
     return handler.get_price_model(args)
   end  
