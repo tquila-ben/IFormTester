@@ -1,6 +1,8 @@
 %h1 Listing IForm XML Posts
 
-%h2 Here is a list of all IFormBuilder have posted to us.
+.quiet Here is a list of all IFormBuilder have posted to us.
+
+%br/
 
 %table
   %thead
@@ -29,6 +31,6 @@
           [
           = link_to 'Test', iform_test_iform_test_responses_path(iform_xml_post.iform_test)
           ]
-[
+Switch Mode: [
 = link_to 'View XML Feeds', iform_xml_feeds_path, {:title => 'To browse the list of received IForm XML Feeds'}
 ]
