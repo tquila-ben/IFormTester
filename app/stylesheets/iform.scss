@@ -137,7 +137,12 @@ ul#navigation li.selected a:link, ul#navigation li.selected a:visited {
 }
 
 body.two-col #footer {
-  text-align: center;
+  text-align: center; 
+  position: fixed; 
+  margin: 0 auto 0 -490px;
+  bottom: 0;
+  left: 50%;
+  padding: 0 10px;
 }
 
 html {

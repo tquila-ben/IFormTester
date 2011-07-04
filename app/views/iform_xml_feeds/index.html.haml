@@ -35,17 +35,15 @@
           [
           = link_to 'Test', iform_test_iform_test_responses_path(iform_xml_feed.iform_test)
           ]
-    %tr
-      %td
   %tfoot
     %tr
       %td
-        = button_to 'Retrieve from IFormBuilder', iform_xml_feeds_url, {:title => 'Get some more from IFormBuilder feeds', :class => 'blue awesome'}
-    %tr
-      %td
-        = form_tag({:action => :update_feed_from}, {:class => 'bp'}) do
-          %label
-            %span{:title => 'Use this to change the Feed URI'} Feed from:
-          = text_field_tag :feed_from, session[:feed_from]
-          = submit_tag 'Change URI'
+#content
+  = button_to 'Retrieve from IFormBuilder', iform_xml_feeds_url, {:title => 'Get some more from IFormBuilder feeds', :class => 'blue awesome'}
+#content
+  = form_tag({:action => :update_feed_from}, {:class => 'bp'}) do
+    %label
+      %span{:title => 'Use this to change the Feed URI'} Feed from:
+    = text_field_tag :feed_from, session[:feed_from]
+    = submit_tag 'Change URI'
     

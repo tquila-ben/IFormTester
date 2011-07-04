@@ -34,8 +34,9 @@
   %tfoot
     %tr
       %td
-        = form_tag({:action => :update_postxml_key}, {:class => 'bp'}) do
-          %label
-            %span{:title => 'Use this to change the key in PostXML'} Expecting Key:
-          = text_field_tag :postxml_key, session[:postxml_key]
-          = submit_tag 'Change Key'
+#content
+  = form_tag({:action => :update_postxml_key}, {:class => 'bp'}) do
+    %label
+      %span{:title => 'Use this to change the key in PostXML'} Expecting Key:
+    = text_field_tag :postxml_key, session[:postxml_key]
+    = submit_tag 'Change Key'

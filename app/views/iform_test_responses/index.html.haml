@@ -39,6 +39,9 @@
         %td
           = form_tag(iform_test_iform_test_response_path(@iform_test, iform_test_response), {:method => :delete}) do
             = image_submit_tag('bullet_delete.png')
+  %tfoot
+    %tr
+      %td
 #content
   %strong Send Test Via:
   = button_to 'REST', iform_test_iform_test_responses_url(@iform_test, :format => 'rest'), {:title => 'Send to the test destination via REST. Record will be sent in the format of JSON', :class => 'blue awesome'}

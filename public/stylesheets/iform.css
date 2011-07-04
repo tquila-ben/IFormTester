@@ -157,9 +157,14 @@ ul#navigation li.selected a:link, ul#navigation li.selected a:visited {
 /* line 139, ../../app/stylesheets/iform.scss */
 body.two-col #footer {
   text-align: center;
+  position: fixed;
+  margin: 0 auto 0 -490px;
+  bottom: 0;
+  left: 50%;
+  padding: 0 10px;
 }
 
-/* line 143, ../../app/stylesheets/iform.scss */
+/* line 148, ../../app/stylesheets/iform.scss */
 html {
   background: #f2f2f2;
 }
